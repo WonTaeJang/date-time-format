@@ -9,7 +9,22 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.5.13"
+    "@vueuse/core": "^13.1.0",
+    "axios": "^1.9.0",
+    "dayjs": "^1.11.13",
+    "eslint": "^9.26.0",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-plugin-vue": "^10.1.0",
+    "flag-icons": "^7.3.2",
+    "globals": "^16.0.0",
+    "moment-timezone": "^0.5.48",
+    "pinia": "^3.0.2",
+    "pinia-plugin-persistedstate": "^4.2.0",
+    "prettier": "^3.5.3",
+    "sass-embedded": "^1.87.0",
+    "v-calendar": "^3.1.2",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.2",
