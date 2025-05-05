@@ -1,0 +1,310 @@
+.p {
+  &-4 {
+    padding: 4px;
+  }
+  &-6 {
+    padding: 6px;
+  }
+  &-8 {
+    padding: 8px;
+  }
+  &-12 {
+    padding: 12px;
+  }
+  &-16 {
+    padding: 16px;
+  }
+  &-40 {
+    padding: 40px;
+  }
+  &-8-4 {
+    padding: 8px 4px;
+  }
+  &-12-14 {
+    padding: 12px 14px;
+  }
+  &-12-16 {
+    padding: 12px 16px;
+  }
+  &-24-32 {
+    padding: 24px 32px;
+  }
+
+  &-b {
+    &-16 {
+      padding-bottom: 16px;
+    }
+  }
+
+  &-l {
+    &-4 {
+      padding-left: 4px;
+    }
+    &-6 {
+      padding-left: 6px;
+    }
+    &-16 {
+      padding-left: 16px;
+    }
+  }
+
+  &-r {
+    &-6 {
+      padding-right: 6px;
+    }
+    &-16 {
+      padding-right: 16px;
+    }
+  }
+}
+
+.m {
+  &-40 {
+    margin: 40px;
+  }
+
+  &-t {
+    &-4 {
+      margin-top: 4px;
+    }
+    &-8 {
+      margin-top: 8px;
+    }
+    &-12 {
+      margin-top: 12px;
+    }
+    &-14 {
+      margin-top: 14px;
+    }
+    &-16 {
+      margin-top: 16px;
+    }
+    &-20 {
+      margin-top: 20px;
+    }
+    &-24 {
+      margin-top: 24px;
+    }
+    &-25 {
+      margin-top: 25px;
+    }
+    &-40 {
+      margin-top: 40px;
+    }
+    &-52 {
+      margin-top: 52px;
+    }
+    &-56 {
+      margin-top: 56px;
+    }
+    &-64 {
+      margin-top: 64px;
+    }
+    &-80 {
+      margin-top: 80px;
+    }
+    &-92 {
+      margin-top: 92px;
+    }
+  }
+
+  &-b {
+    &-4 {
+      margin-bottom: 4px;
+    }
+    &-5 {
+      margin-bottom: 5px;
+    }
+    &-8 {
+      margin-bottom: 8px;
+    }
+    &-12 {
+      margin-bottom: 12px;
+    }
+    &-14 {
+      margin-bottom: 14px;
+    }
+    &-16 {
+      margin-bottom: 16px;
+    }
+    &-20 {
+      margin-bottom: 20px;
+    }
+    &-24 {
+      margin-bottom: 24px;
+    }
+    &-32 {
+      margin-bottom: 32px;
+    }
+    &-40 {
+      margin-bottom: 40px;
+    }
+    &-44 {
+      margin-bottom: 44px;
+    }
+    &-56 {
+      margin-bottom: 56px;
+    }
+    &-80 {
+      margin-bottom: 80px;
+    }
+  }
+
+  &-r {
+    &-16 {
+      margin-right: 16px;
+    }
+    &-20 {
+      margin-right: 20px;
+    }
+  }
+
+  &-l {
+    &-8 {
+      margin-left: 8px;
+    }
+  }
+}
+
+.flex {
+  display: flex;
+}
+
+.point {
+  cursor: pointer;
+}
+
+.cursor {
+  &-not-allowed {
+    cursor: not-allowed;
+  }
+
+  &-pointer {
+    cursor: pointer;
+  }
+}
+
+// text ...
+@mixin text-overflow-200 {
+  display: inline-block;
+  overflow: hidden; 
+  white-space: nowrap; 
+  text-overflow: ellipsis; 
+  max-width: 200px;
+}
+
+@mixin text-overflow-400 {
+  display: inline-block;
+  overflow: hidden; 
+  white-space: nowrap; 
+  text-overflow: ellipsis; 
+  max-width: 400px;
+}
+
+@mixin text-overflow-500 {
+  display: inline-block;
+  overflow: hidden; 
+  white-space: nowrap; 
+  text-overflow: ellipsis; 
+  max-width: 500px;
+}
+
+
+// scoll
+.scroll-wrap-small {
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    height: 5px;
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    height: 8px;
+    background: #ebebef;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #d3d3d6;
+  }
+
+  &::-webkit-scrollbar-thumb:active {
+    background-color: #b3b7bf;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(33, 58, 143, 0);
+  }
+}
+
+.scroll-wrap-x {
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    height: 8px;
+    background: #ebebef;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #d3d3d6;
+  }
+
+  &::-webkit-scrollbar-thumb:active {
+    background-color: #b3b7bf;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(33, 58, 143, 0);
+  }
+}
+
+.scroll-wrap-y {
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color:transparent;
+    border-radius: 4px;
+  }
+
+  &:hover {
+    // border-top-right-radius: 4px;
+    // border-bottom-right-radius: 4px;
+
+    &::-webkit-scrollbar-thumb {
+      background: #ebebef;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+  
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: #d3d3d6;
+      transition: background-color 0.3s ease;
+    }
+  
+    &::-webkit-scrollbar-thumb:active {
+      background-color: #b3b7bf;
+      transition: background-color 0.3s ease;
+    }
+  
+    &::-webkit-scrollbar-track {
+      background: rgba(33, 58, 143, 0);
+    }
+  }
+}
+
+.no-selection {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -ms-user-select: none;
+}

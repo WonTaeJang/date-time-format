@@ -1,0 +1,61 @@
+/* 1차 디자인 - Figma */
+@mixin inner-container {
+  width: $inner-container-width;
+  min-width: $inner-container-width;
+  margin: 0 auto;
+}
+
+/* 2차 디자인 - Zeplin */
+@mixin zeplin-body-normal {
+  font-size: 15px;
+  // font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+@mixin zeplin-body-bold {
+  font-size: 15px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+@mixin zeplin-body-300 {
+  font-size: 15px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+@mixin zeplin-body-400 {
+  font-size: 15px;
+  font-weight: 400;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+@mixin zeplin-body-500 {
+  font-size: 15px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+@mixin zeplin-body-600 {
+  font-size: 15px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
