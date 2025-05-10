@@ -40,7 +40,7 @@
   >
     <div class="title">
       <span>
-        Current date & time format
+        Current date & time format (KST)
       </span>
     </div>
   
@@ -134,16 +134,18 @@ const onClickCopy = (type) => {
 
 .container {
   margin-bottom: 40px;
+  width: 100%;
 }
 
 .unixtime {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
 
   &-text {
     display: inline-block;
-    width: 500px;
+    // width: 500px;
+    flex: 1;
     @include mixins.custom-font--400;
     font-size: 40px;
     color: palette.$black;
@@ -153,11 +155,11 @@ const onClickCopy = (type) => {
 .datetime {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
 
   &-text {
     display: inline-block;
-    width: 500px;
+    flex: 1;
     @include mixins.custom-font--400;
     font-size: 40px;
     color: palette.$black;

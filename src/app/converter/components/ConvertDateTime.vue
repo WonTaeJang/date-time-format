@@ -12,9 +12,6 @@
     <div class="unixtime">
       <TextInput 
         v-model:text-value="textUnixTime"
-        :style="{
-          width: '500px'
-        }"
         type="Number"
         size="large"
         :placeholder="unixTimeplaceholder"
@@ -55,7 +52,7 @@
   >
     <div class="title">
       <span>
-        Enter a date time picker
+        Enter a date time picker (KST)
       </span>
     </div>
   
@@ -63,7 +60,7 @@
       <DateTimePicker
         v-model:date="datePicker"
         :style="{
-          width: '500px'
+          flex: 1
         }"
         :data-format="dateTimeFormat"
       />
@@ -147,7 +144,7 @@ const onClickConvert = (type) => {
 .convert-container {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
 
   span {
     @include mixins.custom-font--normal;
@@ -159,7 +156,7 @@ const onClickConvert = (type) => {
 .unixtime {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
 
   &-text {
     display: inline-block;
@@ -173,7 +170,7 @@ const onClickConvert = (type) => {
 .datetime {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
 
   &-text {
     display: inline-block;
@@ -186,5 +183,6 @@ const onClickConvert = (type) => {
 
 .container {
   margin-bottom: 40px;
+  width: 100%;
 }
 </style>
