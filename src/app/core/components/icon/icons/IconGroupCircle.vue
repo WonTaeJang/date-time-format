@@ -1,0 +1,71 @@
+<template>
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle
+      cx="5"
+      cy="5"
+      r="2"
+      :fill="colors[0]"
+    />
+    <circle
+      cx="12"
+      cy="5"
+      r="2"
+      :fill="colors[0]"
+    />
+    <circle
+      cx="19"
+      cy="5"
+      r="2"
+      :fill="colors[1]"
+    />
+    <circle
+      cx="5"
+      cy="12"
+      r="2"
+      :fill="colors[0]"
+    />
+    <circle
+      cx="12"
+      cy="12"
+      r="2"
+      :fill="colors[1]"
+    />
+    <circle
+      cx="19"
+      cy="12"
+      r="2"
+      :fill="colors[1]"
+    />
+    <circle
+      cx="5"
+      cy="19"
+      r="2"
+      :fill="colors[1]"
+    />
+    <circle
+      cx="12"
+      cy="19"
+      r="2"
+      :fill="colors[1]"
+    />
+    <circle
+      cx="19"
+      cy="19"
+      r="2"
+      :fill="colors[1]"
+    />
+  </svg>
+</template>
+
+<script setup>
+  defineProps({
+    colors: {
+      type: Array,
+      default: ['#E6EAF3', '#B3B7BF'],
+    },
+  })
+</script>
