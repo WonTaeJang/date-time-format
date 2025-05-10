@@ -8,7 +8,7 @@
     <!-- page -->
     <section class="page-container">
       <!-- side bar -->
-      <DefaultSidebar 
+      <DefaultSidebar
         :is-folded="isFolded"
       />
 

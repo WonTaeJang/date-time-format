@@ -1,11 +1,11 @@
-import convertorRoutes from '@/app/convertor/routes.js'
+import converterRoutes from '@/app/converter/routes.js'
 
 const routes = [
   {
     path: '',
 		component: () => import('@/layouts/DefaultLayout.vue'),
 		children: [
-			...convertorRoutes
+			...converterRoutes
 		]
   }
 ]
