@@ -7,8 +7,8 @@ export default [
         component: () => import('./pages/Index.vue'),
       },
       {
-        path: 'unixtime',
-        component: () => import('./pages/UnixTime.vue'),
+        path: 'unix-time-stamp',
+        component: () => import('./pages/UnixTimeStamp.vue'),
       },
       // {
       //   path: 'datetime-format',
