@@ -13,6 +13,7 @@
     </section>
     <section v-else>
       <!--  -->
+      ddd
     </section>
   </article>
 </template>
@@ -37,8 +38,12 @@ const router = useRouter()
 @use '@style/common.scss' as common;
 
 .nav {
+  position: fixed;
+  z-index: 1;
+  top: variables.$header-height;
+  left: 0;
   transition: width 0.3s ease;
-  height: 100%;
+  height: calc(100% - variables.$header-height);
   background-color: palette.$pale-grey-two;
   padding: 12px 5px 12px 12px;
   overflow-y: scroll;

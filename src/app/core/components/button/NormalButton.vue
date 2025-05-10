@@ -136,7 +136,7 @@ const buttonClass = computed(() => {
     
     span {
       color: #fff;
-      @include mixins.zeplin-body-bold;
+      @include mixins.custom-font--bold;
     }
 
     &:hover {
@@ -153,7 +153,7 @@ const buttonClass = computed(() => {
     background-color: palette.$pale-grey;
 
     span {
-      @include mixins.zeplin-body-bold;
+      @include mixins.custom-font--bold;
       color: palette.$black;
     }
 
@@ -173,7 +173,7 @@ const buttonClass = computed(() => {
     
     span {
       color: #fff;
-      @include mixins.zeplin-body-bold;
+      @include mixins.custom-font--bold;
     }
 
     &:hover {
@@ -192,7 +192,7 @@ const buttonClass = computed(() => {
     
     span {
       color: palette.$black;
-      @include mixins.zeplin-body-bold;
+      @include mixins.custom-font--bold;
     }
 
     &:hover {
@@ -218,7 +218,7 @@ const buttonClass = computed(() => {
     display: flex;
     gap: 4px;
     color: palette.$black;
-    @include mixins.zeplin-body-400;
+    @include mixins.custom-font--400;
     background-color: transparent;
 
     &:hover {
@@ -239,7 +239,7 @@ const buttonClass = computed(() => {
     color: #fff;
     border-radius: 8px;
     z-index: 10000;
-    @include mixins.zeplin-body-500;
+    @include mixins.custom-font--500;
     font-size: 12px;
   }
 

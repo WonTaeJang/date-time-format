@@ -156,7 +156,7 @@ const buttonSizeClass = computed(() => {
     }
 
     #{$button}__label {
-      @include mixins.zeplin-body-600;
+      @include mixins.custom-font--600;
       font-size: 16px;
       color: palette.$black;
 
@@ -214,7 +214,7 @@ const buttonSizeClass = computed(() => {
     color: #fff;
     border-radius: 8px;
     z-index: 10000;
-    @include mixins.zeplin-body-500;
+    @include mixins.custom-font--500;
     font-size: 12px;
   }
 
@@ -230,7 +230,7 @@ const buttonSizeClass = computed(() => {
     flex-direction: column;
     
     span {
-      @include mixins.zeplin-body-500;
+      @include mixins.custom-font--500;
       font-size: 12px;
       color: #fff;
     }

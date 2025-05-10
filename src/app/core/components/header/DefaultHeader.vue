@@ -113,7 +113,7 @@ const onClickFoldFlag =  () => {
     span {
       display: inline-block;
       margin-bottom: 5.5px;
-      @include mixins.zeplin-body-bold;
+      @include mixins.custom-font--bold;
       font-size: 16px;
       color: palette.$darkish-blue;
     }
@@ -139,7 +139,7 @@ const onClickFoldFlag =  () => {
 }
 
 .project-name {
-  @include mixins.zeplin-body-bold;
+  @include mixins.custom-font--bold;
   display: inline-block;
   margin-left: 100px;
   font-size: 20px;
