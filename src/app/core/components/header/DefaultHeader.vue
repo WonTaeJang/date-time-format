@@ -33,7 +33,7 @@
 
       <div class="user-box">
         <!-- locale -->
-        <!-- <LocaleDropdown /> -->
+        <LocaleDropdown />
       </div>
     </div>
   </header>
@@ -41,7 +41,7 @@
 
 <script setup>
 import NormalButton from '@ui/button/NormalButton.vue'
-// import LocaleDropdown from '@ui/form/LocaleDropdown.vue'
+import LocaleDropdown from '@ui/form/LocaleDropdown.vue'
 import Icon from '@ui/icon/Icon.vue'
 import { useRoute, useRouter } from 'vue-router'
 

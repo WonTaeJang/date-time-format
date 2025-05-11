@@ -15,6 +15,7 @@ import 'v-calendar/dist/style.css'
 // locale
 import en_US from '@/locales/en_US.json'
 import ko_KR from '@/locales/ko_KR.json'
+import { useUserStore } from '@store/user'
 
 import dayjs from 'dayjs'
 import 'dayjs/locale/ko'
@@ -25,6 +26,7 @@ const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)
 app.use(pinia)
 
+const userStore = useUserStore()
 const messages = {
   en_US,
   ko_KR,
@@ -33,21 +35,27 @@ const SUPPORT_LANGUAGES = ['en_US', 'ko_KR']
 const FALLBACK_LOCALE = 'en_US'
 
 const initLanguage = () => {
+  const savedLanguage = userStore.userLocale
   let returnLocale = null
-  let language = null
-
-  const browserLanguage = navigator.language.replace('-', '_')
-  language = SUPPORT_LANGUAGES.find((el) => {
-    return el.includes(browserLanguage)
-  })
-
-  if (language) {
-    returnLocale = language
+  if (savedLanguage) {
+    returnLocale = savedLanguage
   } else {
-    returnLocale = FALLBACK_LOCALE
+    //store에 language가 저장되어 있지 않은 경우
+    let language = null
+
+    const browserLanguage = navigator.language.replace('-', '_')
+    language = SUPPORT_LANGUAGES.find((el) => {
+      return el.includes(browserLanguage)
+    })
+
+    if (language) {
+      returnLocale = language
+    } else {
+      returnLocale = FALLBACK_LOCALE
+    }
+    userStore.userLocale = returnLocale
+    dayjs().locale(returnLocale.replace('_', '-'))
   }
-    
-  dayjs().locale(returnLocale.replace('_', '-'))
   return returnLocale
 }
 
