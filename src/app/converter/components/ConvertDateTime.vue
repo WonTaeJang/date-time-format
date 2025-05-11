@@ -33,17 +33,14 @@
           {{ $t('nav.converter') }}
         </label> 
       </NormalButton>
-
-      <div 
-        v-if="unixConvertToggle"
-        class="convert-container"
-      >
-        <span>-></span>
-
-        <span>
-          {{ convertUnixTime }}
-        </span>
-      </div>
+    </div>
+    <div 
+      v-if="unixConvertToggle"
+      class="convert-container--result"
+    >
+      <ResultBox 
+        :history="unixToDateHistory"
+      />
     </div>
   </div>
   <div
@@ -75,17 +72,14 @@
           {{ $t('nav.converter') }}
         </label> 
       </NormalButton>
-
-      <div 
-        v-if="dateConvertToggle"
-        class="convert-container"
-      >
-        <span>-></span>
-
-        <span>
-          {{ convertDatePicker }}
-        </span>
-      </div>
+    </div>
+    <div 
+      v-if="dateConvertToggle"
+      class="convert-container--result"
+    >
+      <ResultBox 
+        :history="dateToUnixHistory"
+      />
     </div>
   </div>
 </template>
@@ -93,6 +87,7 @@
 import NormalButton from '@ui/button/NormalButton.vue'
 import TextInput from '@ui/form/TextInput.vue'
 import DateTimePicker from '@ui/calendar/DateTimePicker.vue'
+import ResultBox from './ResultBox.vue'
 import dayjs from 'dayjs'
 import { ref } from 'vue'
 import { dateTimeFormat } from '@util/datetimeformat.js'
@@ -114,15 +109,28 @@ const convertDatePicker = ref(null)
 const unixConvertToggle = ref(false)
 const dateConvertToggle = ref(false)
 
+const unixToDateHistory = ref([])
+const dateToUnixHistory = ref([])
 const onClickConvert = (type) => {
+  let textUnix = 0
+
   switch (type) {
     case 'unixToDate':
       // console.log(textUnixTime.value)
-      convertUnixTime.value = dayjs(textUnixTime.value * 1000).format(dateTimeFormat)
+      textUnix = textUnixTime.value ?? 0
+      convertUnixTime.value = dayjs(textUnix * 1000).format(dateTimeFormat)
+      unixToDateHistory.value.push({
+        before: textUnix,
+        after: convertUnixTime.value
+      })
       unixConvertToggle.value = true
       break
     case 'dateToUnix':
       convertDatePicker.value = dayjs(datePicker.value).unix()
+      dateToUnixHistory.value.push({
+        before: datePicker.value,
+        after: convertDatePicker.value
+      })
       dateConvertToggle.value = true
       break
   }
@@ -145,6 +153,10 @@ const onClickConvert = (type) => {
   display: flex;
   align-items: center;
   gap: 20px;
+
+  &--result {
+    margin-top: 10px
+  }
 
   span {
     @include mixins.custom-font--normal;
