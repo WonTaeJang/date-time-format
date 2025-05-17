@@ -5,17 +5,12 @@
     :style="containerStyle"
   >
     <div class="input-text-box">
-      <div 
-        v-if="props.iconType"
-        class="input-text-icon"
-      >
-        <Icon 
-          :icon-type="props.iconType"
-          :colors="[isFocus ? '#4CAF50' : '#D3D3D6']"
-          :width="28"
-          :height="28"
-        />
-      </div>
+      <span 
+        v-if="props.localeType === 'country'"
+        class="input-flag"
+        :class="`fi fi-${text?.toLowerCase()}`"
+      ></span>
+
       <input
         v-model="text"
         :type="props.type"
@@ -24,48 +19,31 @@
         :readonly="props.readonly"
         @input="inputValue"
         @focus="focusInput"
-        @change="onChange($event)"
         @focusout="focusoutInput"
         @click="onClickInput($event)"
       >
     </div>
-    <div 
-      v-if="props.tags.length > 0"
-      :class="[
-        'history-container',
-      ]"
-      :style="inputHistoryStyle"
-    >
-      <div
-        v-for="(item, i) of props.tags"
-        :key="`history-${i}`"
-        class="history-item"
-        @click.capture.stop="onClickHistoryItem(item)"
-      >
-        <Icon 
-          icon-type="history"
-          :width="20"
-          :height="20"
-        />
 
-        <span>
-          {{ item }}
-        </span>
-      </div>
-    </div>
     <ul 
-      v-if="searchListToggle && props.searchList.length > 0"
+      v-if="searchListToggle && searchListFilter.length > 0"
       ref="searchListRef"
       class="search-list"
-      :style="containerStyle"
+      :style="searchListStyle"
     >
       <li
-        v-for="(item, idx) of props.searchList"
+        v-for="(item, idx) of searchListFilter"
         :key="`li-key-${idx}`"
         class="search-item"
         @click="onClickSearchItem(item)"
       >
-        {{ item }}
+        <span 
+          v-if="props.localeType === 'country'"
+          :class="`fi fi-${item} border-pale-grey`"
+        ></span>
+
+        <span class="name">
+          {{ props.localeType === 'country' ? item.toUpperCase() : item }}
+        </span>
       </li>
     </ul>
   </div>
@@ -73,14 +51,10 @@
 
 <script setup>
 import { computed, onMounted, ref, watch } from 'vue'
-import Icon from '@ui/icon/Icon.vue'
-import { onClickOutside } from '@vueuse/core'
+import { onClickOutside, useElementSize } from '@vueuse/core'
+import { countries, languages } from '@util/locale.js'
 
 const props = defineProps({
-  iconType: {
-    type: String,
-    default: null
-  },
   size: {
     type: String,
     default: 'normal' // large
@@ -93,13 +67,9 @@ const props = defineProps({
     type: String,
     default: 'text'
   },
-  color: {
-    type: String,
-    default: 'normal' // error
-  },
-  tags: {
-    type: Array,
-    default: () => []
+  localeType: {
+    type: String, // country, language
+    default: null
   },
   width: {
     type: Number,
@@ -127,11 +97,11 @@ const emit = defineEmits([
   'change'
 ])
 
-const historyItemHeight = 24
 const text = ref(null)
 const isHistoryFocus = ref(false)
 const isFocus = ref(false)
 const inputRef = ref(null)
+const { width:componentWidth } = useElementSize(inputRef)
 
 const searchListRef = ref(null)
 const searchListToggle = ref(false)
@@ -150,37 +120,47 @@ onClickOutside(searchListRef, () => {
   searchListToggle.value = false
 })
 
-const inputHistoryStyle = computed(() => {
-  let height = 0
+const searchListFilter = computed(() => {
+  if (props.localeType === 'country') {
+    let list = [...countries]
 
-  if (isHistoryFocus.value) {
-    height = props.tags.length*historyItemHeight
-  } else {
-    height = props.tags.length > 0 ? historyItemHeight : 0
+    if (props.textValue && props.textValue.length > 0) {
+      list = list.filter((el) => {
+        return el.toLowerCase().includes(props.textValue.toLowerCase())
+      })
+    }
+
+    return list
+  }
+  else if (props.localeType === 'language') {
+    let list = [...languages]
+
+    if (props.textValue && props.textValue.length > 0) {
+      list = list.filter((el) => {
+        return el.toLowerCase().includes(props.textValue.toLowerCase())
+      })
+    }
+
+    return list
   }
 
-  return {
-    height: `${height}px`,
-  }
+
+  return []
 })
 
 const inputStyle = computed(() => {
   let result = {}
 
-  if (props.iconType) {
-    result['padding-left'] = '36px'
-  }
-
   if (props.size === 'large') {
     result['height'] = '40px'
   }
 
-  if (props.readonly) {
-    result['background-color'] = '#f5f5f7'
+  if (props.localeType === 'country') {
+    result['padding-left'] = '32px'
   }
 
-  if (props.color === 'error') {
-    result['color'] = '#ff5555'
+  if (props.readonly) {
+    result['background-color'] = '#f5f5f7'
   }
 
   return result
@@ -191,6 +171,16 @@ const containerStyle = computed(() => {
 
   if (props.width) {
     style['width'] = `${props.width}px`
+  }
+
+  return style
+})
+
+const searchListStyle = computed(() => {
+  let style = {}
+
+  if (componentWidth.value) {
+    style['width'] = `${componentWidth.value}px`
   }
 
   return style
@@ -211,10 +201,6 @@ const inputValue = ($event) => {
   emit('input', $event.target.value)
 }
 
-const onClickHistoryItem = (item) => {
-  emit('update:textValue', item)
-}
-
 const focusInput = () => {
   emit('focus', text.value)
   isFocus.value = true
@@ -227,17 +213,19 @@ const focusoutInput = () => {
 }
 
 const onClickInput = ($event) => {
-  if (props.searchList.length > 0) {
+  if (searchListFilter.value.length > 0) {
     searchListToggle.value = true
   }
 }
 
-const onChange = () => {
-  emit('change')
-}
-
 const onClickSearchItem = (item) => {
-  emit('update:textValue', item)
+  let value = item
+
+  if (props.localeType === 'country') {
+    value = value.toUpperCase()
+  }
+
+  emit('update:textValue', value)
   emit('change')
   searchListToggle.value = false
 }
@@ -251,7 +239,7 @@ const onClickSearchItem = (item) => {
 @use '@style/common.scss' as common;
 
 .input-text-container {
-  width: 100%;
+  flex: 1;
 
   ul, li {
     margin: 0;
@@ -299,13 +287,19 @@ const onClickSearchItem = (item) => {
 
 .search-item {
   padding: 4px 8px !important;
-  @include mixins.custom-font--400;
-  color: palette.$black;
-  font-size: 14px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 
   &:hover {
     background-color: palette.$pale-grey;
+  }
+
+  .name {
+    @include mixins.custom-font--400;
+    color: palette.$black;
+    font-size: 14px;
   }
 }
 
@@ -322,35 +316,17 @@ const onClickSearchItem = (item) => {
   position: relative;
 }
 
-.history {
-  &-container {
-    margin: 5px 0;
-    padding: 0;
-    transition: all 0.5s;
-    overflow: hidden;
-  }
+.input-flag {
+  position: absolute;
+  z-index: 1;
+  left: 8px;
+  top: 50%;
+  transform: translate(0,-50%);
+  border: 1px solid palette.$pale-grey;
+}
 
-  &-item {
-    display: flex;
-    align-items: center;
-    height: 24px;
-    padding-left: 5px;
-    gap: 4px;
-    border: 0;
-    border-radius: 8px;
-    
-
-    &:hover {
-      background-color: palette.$pale-grey; 
-    }
-
-    span {
-      @include mixins.custom-font--500;
-      color: palette.$black;
-      font-size: 15px;
-      cursor: default;
-    }
-  }
+.border-pale-grey {
+  border: 1px solid palette.$pale-grey;
 }
 
 </style>

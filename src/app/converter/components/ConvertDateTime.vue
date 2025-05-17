@@ -5,7 +5,7 @@
   >
     <div class="title">
       <span>
-        Enter a timestamp (seconds)
+        {{ $t('convert.enter_timestamp') }}
       </span>
     </div>
   
@@ -49,7 +49,7 @@
   >
     <div class="title">
       <span>
-        Enter a date time picker (UTC)
+        {{ $t('convert.enter_datetime') }}
       </span>
     </div>
   

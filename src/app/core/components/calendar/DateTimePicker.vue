@@ -28,7 +28,13 @@
       <div
         v-if="popoverToggle"
         ref="datetimeRef"
-        class="datetime-picker"
+        :class="[
+          'datetime-picker',
+          {
+            'datetime-picker--left': props.position === 'left',
+            'datetime-picker--right': props.position === 'right'
+          }
+        ]"
       >
         <VDatePicker
           v-model="calendarDate"
@@ -83,6 +89,10 @@ const props = defineProps({
   required: {
     type: Boolean,
     default: false
+  },
+  position: {
+    type: String,
+    default: 'left'
   }
 })
 
@@ -148,9 +158,16 @@ const onClickPopover = () => {
 
 .datetime-picker {
   position: absolute;
-  left: 0;
   top: 100%;
   z-index: 10;
+
+  &--left {
+    left: 0;
+  }
+
+  &--right {
+    right: 0;
+  }
 }
 
 .input-datetime {

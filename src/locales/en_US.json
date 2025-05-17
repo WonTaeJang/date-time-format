@@ -231,5 +231,10 @@
     "translations.contents_role": "Role",
     "translations.contents_words": "Words",
     "translations.master_value_status": "Master Value Status",
-    "translations.new": "New"
+    "translations.new": "New",
+    "convert.unixtimestamp": "Unix timestamp",
+    "convert.curr_epock_unix": "Current epoch unix timestamp (seconds)",
+    "convert.enter_timestamp": "Enter a timestamp (seconds)",
+    "convert.curr_datetime": "Current date & time format (UTC)",
+    "convert.enter_datetime": "Enter a date time picker (UTC)"
 }

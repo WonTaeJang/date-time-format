@@ -10,10 +10,10 @@ export default [
         path: 'unix-time-stamp',
         component: () => import('./pages/UnixTimeStamp.vue'),
       },
-      // {
-      //   path: 'datetime-format',
-      //   component: () => import('./pages/DateTimeCustom.vue'),
-      // },
+      {
+        path: 'date-time-format',
+        component: () => import('./pages/DateTimeFormat.vue'),
+      },
     ],
   },  
 ]

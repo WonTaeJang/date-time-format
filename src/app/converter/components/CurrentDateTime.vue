@@ -5,7 +5,7 @@
   >
     <div class="title">
       <span>
-        Current epoch unix timestamp (seconds)
+        {{ $t('convert.curr_epock_unix') }}
       </span>
     </div>
   
@@ -40,7 +40,7 @@
   >
     <div class="title">
       <span>
-        Current date & time format (UTC)
+        {{ $t('convert.curr_datetime') }}
       </span>
     </div>
   

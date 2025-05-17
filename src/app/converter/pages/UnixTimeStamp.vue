@@ -1,8 +1,8 @@
 <template>
   <PageContainer
     :is-loading="isLoading"
-    title="Unix time stamp"
-    :i18n="false"
+    title="convert.unixtimestamp"
+    :i18n="true"
   >
     <div class="current-time">
       <CurrentDateTime
