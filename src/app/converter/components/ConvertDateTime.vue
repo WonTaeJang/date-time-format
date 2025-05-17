@@ -49,7 +49,7 @@
   >
     <div class="title">
       <span>
-        Enter a date time picker (KST)
+        Enter a date time picker (UTC)
       </span>
     </div>
   
@@ -89,6 +89,8 @@ import TextInput from '@ui/form/TextInput.vue'
 import DateTimePicker from '@ui/calendar/DateTimePicker.vue'
 import ResultBox from './ResultBox.vue'
 import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
+dayjs.extend(utc)
 import { ref } from 'vue'
 import { dateTimeFormat } from '@util/datetimeformat.js'
 
@@ -103,7 +105,7 @@ const props = defineProps({
 
 const textUnixTime = ref(null)
 const convertUnixTime = ref(null)
-const datePicker = ref(dayjs().format(dateTimeFormat))
+const datePicker = ref(dayjs().utc().format(dateTimeFormat))
 const convertDatePicker = ref(null)
 
 const unixConvertToggle = ref(false)
@@ -118,7 +120,7 @@ const onClickConvert = (type) => {
     case 'unixToDate':
       // console.log(textUnixTime.value)
       textUnix = textUnixTime.value ?? 0
-      convertUnixTime.value = dayjs(textUnix * 1000).format(dateTimeFormat)
+      convertUnixTime.value = dayjs(textUnix * 1000).utc().format(dateTimeFormat)
       unixToDateHistory.value.push({
         before: textUnix,
         after: convertUnixTime.value
@@ -126,7 +128,7 @@ const onClickConvert = (type) => {
       unixConvertToggle.value = true
       break
     case 'dateToUnix':
-      convertDatePicker.value = dayjs(datePicker.value).unix()
+      convertDatePicker.value = dayjs(datePicker.value).utc().unix()
       dateToUnixHistory.value.push({
         before: datePicker.value,
         after: convertDatePicker.value

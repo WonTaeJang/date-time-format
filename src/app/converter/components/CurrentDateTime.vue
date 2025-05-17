@@ -40,7 +40,7 @@
   >
     <div class="title">
       <span>
-        Current date & time format (KST)
+        Current date & time format (UTC)
       </span>
     </div>
   
@@ -91,7 +91,7 @@ const intervalId = ref(null)
 
 onMounted(() => {
   intervalId.value = setInterval(() => {
-    currentUnixTime.value = dayjs().unix()
+    currentUnixTime.value = dayjs().utc().unix()
   }, 1000)
 })
 
@@ -100,7 +100,7 @@ onUnmounted(() => {
 })
 
 const dateTime = computed(() => {
-  return dayjs(currentUnixTime.value*1000).format(dateTimeFormat)
+  return dayjs(currentUnixTime.value*1000).utc().format(dateTimeFormat)
 })
 
 const onClickCopy = (type) => {
