@@ -1,0 +1,1 @@
+import{c as s,d as l,e as t}from"./index-Bw6TbKeP.js";const r={viewBox:"0 0 16 16",fill:"none",xmlns:"http://www.w3.org/2000/svg"},n=["fill"],i={__name:"IconCaretRight",props:{colors:{type:Array,default:["#B3B7BF"]}},setup(o){return(a,e)=>(l(),s("svg",r,[t("g",{fill:o.colors[0]},e[0]||(e[0]=[t("path",{d:"M5 12L10 8L5 4V12Z"},null,-1)]),8,n)]))}};export{i as default};
