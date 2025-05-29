@@ -1,11 +1,11 @@
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
-import { hash } from './src/util/hash.js'
 import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
+  base: '/blog/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
@@ -24,10 +24,15 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        entryFileNames: `[name]` + hash + `.js`,
-        chunkFileNames: `[name]` + hash + `.js`,
-        // assetFileNames: `[name]` + hash + `.[ext]`
-      }
+        sanitizeFileName: (name) => {
+          // Sanitizes file names generated during the build process:
+          // - Replaces spaces with dashes ('-').
+          // - Removes invalid characters that are not alphanumeric, underscores (_), periods (.), or dashes (-).
+          return name
+            .replace(/\s+/g, '-') // Replaces spaces with dashes.
+            .replace(/[^a-zA-Z0-9_.-]/g, ''); // Removes all invalid characters.
+        },
+      },
     }
   },
 })

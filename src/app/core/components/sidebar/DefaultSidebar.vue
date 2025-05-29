@@ -13,7 +13,11 @@
     </section>
     <section v-else>
       <!--  -->
-      ddd
+      <button
+        @click="onClickRouter('/unix-time-stamp/')"
+      >
+        /unix-time-stamp/
+      </button>
     </section>
   </article>
 </template>
@@ -29,6 +33,10 @@ const props = defineProps({
 
 const route = useRoute()
 const router = useRouter()
+
+const onClickRouter = (path) => {
+  router.push(path)
+}
 </script>
 
 <style lang="scss" scoped>

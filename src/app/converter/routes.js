@@ -1,6 +1,6 @@
 export default [
   {
-    path: '/converter',
+    path: '/',
     children: [
       {
         path: '',
