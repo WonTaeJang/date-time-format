@@ -8,22 +8,17 @@
       }
     ]"
   >
-    <section v-if="props.isFolded">
-      <!--  -->
-    </section>
-    <section v-else>
-      <!--  -->
-      <button
-        @click="onClickRouter('/unix-time-stamp/')"
-      >
-        /unix-time-stamp/
-      </button>
-    </section>
+    <NavContents
+      v-for="(nav, idx) of navigations"
+      :key="idx"
+      :nav="nav"
+      :is-folded="props.isFolded"
+    />
   </article>
 </template>
 
 <script setup>
-import { useRoute, useRouter } from 'vue-router'
+import NavContents from './NavContents.vue'
 const props = defineProps({
   isFolded: {
     type: Boolean,
@@ -31,12 +26,25 @@ const props = defineProps({
   }
 })
 
-const route = useRoute()
-const router = useRouter()
-
-const onClickRouter = (path) => {
-  router.push(path)
-}
+const navigations = [
+  {
+    id: 'converter',
+    label: 'nav.converter',
+    path: '/converter',
+    children: [
+      {
+        id: 'unix-time-stamp',
+        label: 'convert.unixtimestamp',
+        path: '/converter/unix-time-stamp',
+      },
+      {
+        id: 'date-time-format',
+        label: 'convert.datetimeFormat',
+        path: '/converter/date-time-format',
+      }
+    ]
+  }
+]
 </script>
 
 <style lang="scss" scoped>

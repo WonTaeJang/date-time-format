@@ -233,6 +233,7 @@
     "translations.master_value_status": "Master Value Status",
     "translations.new": "New",
     "convert.unixtimestamp": "Unix timestamp",
+    "convert.datetimeFormat": "Date/time formats",
     "convert.curr_epock_unix": "Current epoch unix timestamp (seconds)",
     "convert.enter_timestamp": "Enter a timestamp (seconds)",
     "convert.curr_datetime": "Current date & time format (UTC)",
