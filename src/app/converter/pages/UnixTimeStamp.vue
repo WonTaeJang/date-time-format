@@ -40,5 +40,6 @@ const isLoading = ref(false)
 .current-time {
   // width: 900px;
   margin: 40px auto;
+  margin-bottom: 300px;
 }
 </style>

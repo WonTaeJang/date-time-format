@@ -14,6 +14,10 @@ export default [
         path: 'date-time-format',
         component: () => import('./pages/DateTimeFormat.vue'),
       },
+      {
+        path: 'word-to-html',
+        component: () => import('./pages/WordToHtml.vue'),
+      },
     ],
   },  
 ]

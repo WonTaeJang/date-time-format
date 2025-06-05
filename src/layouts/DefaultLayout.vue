@@ -25,7 +25,12 @@
       ]"
     >
       <article 
-        :class="['main-container']"
+        :class="[
+          'main-container',
+          {
+            'main-container-wide': isWide
+          }
+        ]"
       >
         <router-view />
       </article>
@@ -37,12 +42,23 @@
 import DefaultHeader from '@ui/header/DefaultHeader.vue'
 import DefaultSidebar from '@ui/sidebar/DefaultSidebar.vue'
 import SnackBar from '@ui/snackbar/SnackBar.vue'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useCoreStore } from '@store/core'
 import { storeToRefs } from 'pinia'
+import { useRoute, useRouter } from 'vue-router'
+
+const route = useRoute()
 const coreStore = useCoreStore()
 const { isFolded } = storeToRefs(coreStore)
 
+const isWide = computed(() => {
+  let wideFlag = false
+  if (route.path === '/converter/word-to-html') {
+    wideFlag = true
+  }
+
+  return wideFlag
+})
 </script>
 
 <style lang="scss" scoped>
@@ -75,10 +91,15 @@ const { isFolded } = storeToRefs(coreStore)
   .main-container {
     min-width: 600px;
     max-width: 800px;
+    overflow: hidden;
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
     overflow-x: auto;
+
+    &-wide {
+      max-width: 100% !important;
+    }
   }
 }
 </style>

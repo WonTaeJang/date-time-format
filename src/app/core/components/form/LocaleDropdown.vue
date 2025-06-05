@@ -4,7 +4,6 @@
       ref="dropdownRef"
       :class="[
         'dropdown-wrap',
-        {'dropdown-wrap--focus' : isFocus}
       ]"
       @click="onClick"
     >
