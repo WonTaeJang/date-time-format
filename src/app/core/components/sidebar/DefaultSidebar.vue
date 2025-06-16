@@ -41,7 +41,12 @@ const navigations = [
         id: 'date-time-format',
         label: 'convert.datetimeFormat',
         path: '/converter/date-time-format',
-      }
+      },
+      {
+        id: 'word-to-html',
+        label: 'convert.word_to_html',
+        path: '/converter/word-to-html',
+      },
     ]
   }
 ]

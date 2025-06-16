@@ -17,9 +17,13 @@ export const getDB = () => {
 }
 
 export const saveToDB = async (key, value) => {
-  const db = await getDB()
-
-  await db.put(storeName, {key, value})
+  
+  try {
+    const db = await getDB()
+    await db.put(storeName, {key, value})
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 export const getFromDB = async (key) => {
