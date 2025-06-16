@@ -1,0 +1,1 @@
+import{c as s,d as l,e as o}from"./index-B_t3ELNy.js";const r={viewBox:"0 0 16 16",fill:"none",xmlns:"http://www.w3.org/2000/svg"},n=["fill"],p={__name:"IconCaretUp",props:{colors:{type:Array,default:["#B3B7BF"]}},setup(t){return(a,e)=>(l(),s("svg",r,[o("g",{fill:t.colors[0]},e[0]||(e[0]=[o("path",{d:"M12 10L8 5L4 10H12Z"},null,-1)]),8,n)]))}};export{p as default};
