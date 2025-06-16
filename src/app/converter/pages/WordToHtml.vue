@@ -132,10 +132,8 @@ const { height:clientHeight} = useElementSize(htmlRef)
 const storedRows = ref([])
 
 onMounted(async () => {
-  if (userStore.isAdmin) {
-    init()
-    await loadFileDB()
-  }
+  init()
+  await loadFileDB()
 })
 
 watch(scrollTop, () => {

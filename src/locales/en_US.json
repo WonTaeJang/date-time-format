@@ -237,5 +237,6 @@
     "convert.curr_epock_unix": "Current epoch unix timestamp (seconds)",
     "convert.enter_timestamp": "Enter a timestamp (seconds)",
     "convert.curr_datetime": "Current date & time format (UTC)",
-    "convert.enter_datetime": "Enter a date time picker (UTC)"
+    "convert.enter_datetime": "Enter a date time picker (UTC)",
+    "convert.word_to_html": "Word to html"
 }
