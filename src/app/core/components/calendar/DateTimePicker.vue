@@ -11,13 +11,20 @@
     <div 
       v-else
       class="input-datetime"
-      @click="onClickPopover"
     >
       <span
+        v-if="props.type === 'span'"
         class="span-title"
       >
         {{ calendarDate ? localeDateTime : null }}
       </span>
+      <TextInput 
+        v-else
+        v-model:text-value="localeDateTime"
+        size="large"
+        :placeholder="localeDateTime"
+        @change="onChangeTextInput"
+      />
       <Icon 
         icon-type="calendar"
         :width="40"
@@ -57,6 +64,7 @@
 <script setup>
 import Icon from '@ui/icon/Icon.vue'
 import IconButton from '@ui/button/IconButton.vue'
+import TextInput from '@ui/form/TextInput.vue'
 import { computed, onMounted, ref } from 'vue'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
@@ -65,11 +73,11 @@ import { onClickOutside } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
 const { locale } = useI18n({ useScope: 'global' })
 
+const date = defineModel('date', {
+  type: [String, Number, null],
+})
+
 const props = defineProps({
-  date: {
-    type: [String, Number, null],
-    required: true
-  },
   minDate: {
     type: Date,
     default: null
@@ -93,26 +101,34 @@ const props = defineProps({
   position: {
     type: String,
     default: 'left'
+  },
+  type: {
+    type: String,
+    default: 'span' // input
   }
 })
 
-const emit = defineEmits(['update:date', 'focusout'])
+const emit = defineEmits(['focusout'])
 
 const popoverToggle = ref(false)
 const calendarDate = ref(null)
 const datetimeRef = ref(null)
+const localeDateTime = ref(null)
 
 onMounted(() => {
-  if (Number.isInteger(props.date)) {
-    calendarDate.value = dayjs(props.date*1000).format(props.dataFormat)
+  if (Number.isInteger(date.value)) {
+    calendarDate.value = dayjs(date.value*1000).format(props.dataFormat)
   } else {
-    calendarDate.value = props.date
+    calendarDate.value = date.value
   }
+
+  updateLocaleTime()
 })
 
 onClickOutside(datetimeRef, () => {
   popoverToggle.value = false
-  emit('update:date', dayjs(calendarDate.value).format(props.dataFormat))
+  updateLocaleTime()
+  date.value = dayjs(calendarDate.value).format(props.dataFormat)
   emit('focusout')
 })
 
@@ -121,18 +137,20 @@ const calendarLocale = computed(() => {
   return lang
 })
 
-const localeDateTime = computed(() => {
-  if (calendarDate.value) {
-    return dayjs(calendarDate.value).format(props.dataFormat)
-  }
-
-  return null
-})
-
 const onClickPopover = () => {
   if (props.readonly) return 
   
   popoverToggle.value = true
+}
+
+const updateLocaleTime = () => {
+  if (calendarDate.value) {
+    localeDateTime.value =  dayjs(calendarDate.value).format(props.dataFormat)
+  }
+}
+
+const onChangeTextInput = () => {
+  date.value = localeDateTime.value
 }
 
 </script>

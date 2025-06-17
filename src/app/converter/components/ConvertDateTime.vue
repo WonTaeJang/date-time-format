@@ -59,6 +59,7 @@
         :style="{
           flex: 1
         }"
+        type="input"
         :data-format="dateTimeFormat"
       />
   
@@ -128,7 +129,7 @@ const onClickConvert = (type) => {
       unixConvertToggle.value = true
       break
     case 'dateToUnix':
-      convertDatePicker.value = dayjs(datePicker.value).utc().unix()
+      convertDatePicker.value = dayjs.utc(datePicker.value).unix()
       dateToUnixHistory.value.push({
         before: datePicker.value,
         after: convertDatePicker.value
